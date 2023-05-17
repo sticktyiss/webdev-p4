@@ -18,7 +18,7 @@ const Auth = () => {
     };
 
     const url = 'https://socialmtn.devmountain.com'
-    
+    console.log(body)
     axios
       .post(register ? `${url}/register` : `${url}/login`, body)
       .then(({ data }) => {
