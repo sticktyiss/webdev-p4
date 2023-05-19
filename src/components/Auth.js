@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import AuthContext from "../store/authContext";
+const {CONNECTION_STRING} = process.env
 
 const Auth = () => {
   const [username, setUsername] = useState("");
@@ -17,10 +18,10 @@ const Auth = () => {
       password,
     };
 
-    const url = 'https://socialmtn.devmountain.com'
-    console.log(body)
+    // const url = 'http://localhost:3000'
+    console.log('BODY', body)
     axios
-      .post(register ? `${url}/register` : `${url}/login`, body)
+      .post(register ? `/register` : `/login`, body)
       .then(({ data }) => {
         console.log("AFTER AUTH", data);
         authCtx.login(data.token, data.exp, data.userId)
@@ -47,7 +48,7 @@ const Auth = () => {
         />
         <input
           className="form-input"
-          type="text"
+          type="password"
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

@@ -16,7 +16,7 @@ module.exports = {
       if (foundUser) {
         const isAuthenticated = bcrypt.compareSync(
           password,
-          foundUser.hashedPassword
+          foundUser.hashedPass
         );
         if (isAuthenticated) {
           const token = createToken(
@@ -29,7 +29,7 @@ module.exports = {
             userId: foundUser.dataValues.id,
             token,
             exp,
-          });//TODO: this is the last thing I did--------------------------//
+          });
         } else {
           console.log("Password is incorrect.");
         }
@@ -53,7 +53,7 @@ module.exports = {
         const hash = bcrypt.hashSync(password, salt);
         const newUser = await User.create({
           username,
-          hashedPassword: hash,
+          hashedPass: hash,
         });
         console.log(newUser);
         const token = createToken(
